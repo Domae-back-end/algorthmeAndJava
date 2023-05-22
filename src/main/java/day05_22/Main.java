@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
+    //https://www.acmicpc.net/problem/2869
     public static void main(String[] args) throws IOException {
 
         String input = new BufferedReader(new InputStreamReader(System.in)).readLine();
