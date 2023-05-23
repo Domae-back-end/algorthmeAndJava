@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
     public class Sosu {
-
+    //https://www.acmicpc.net/problem/1929
         public static boolean[] getPrime(){
             int num = 1000000;
 

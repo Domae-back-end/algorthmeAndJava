@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
     public class SumCycle {
+        //https://www.acmicpc.net/problem/1110
         public static void main(String[] args) throws IOException {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
