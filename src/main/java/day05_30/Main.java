@@ -8,64 +8,31 @@ import java.util.*;
 
 public class Main {
 
+
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        HashMap<Integer, Integer> items = new HashMap<>();
-        StringTokenizer st = new StringTokenizer(reader.readLine());
-        ArrayList<Integer> key_list = new ArrayList<>();
 
-        int N = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
+        int[] W = new int[105];
+        int[] V = new int[105];
 
-        for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(reader.readLine());
-            int item_w = Integer.parseInt(st.nextToken());
-            int item_v = Integer.parseInt(st.nextToken());
-            key_list.add(item_w);
-            items.put(item_w, item_v);
+        int[][] DP = new int[105][100005];
+
+        Scanner sc = new Scanner(System.in);
+
+
+        int N = sc.nextInt(); // 경우의 수
+        int K = sc.nextInt(); // 최대 무게
+
+        for (int i = 1; i <= N; i++) {
+            W[i] = sc.nextInt();
+            V[i] = sc.nextInt();
         }
-        Collections.sort(key_list);
 
-        //정렬 후
-
-        int tot_w = 0;
-        int tot_v = 0;
-
-        int w_mx = 0;
-        int v_mx = 0;
-
-        /**
-         * 총 무게 : 7
-         * key  value
-         * 3    6
-         * 4    8
-         * 5    12
-         * 6    13
-         */
-
-        for (int key : key_list) {
-            tot_w += key; //현재 무게
-
-            if (K > tot_w) { //
-                tot_v += items.get(key);
+        for (int i = 1; i <= N; i++) { // i가 뽑는수
+            for (int j = 1; j <= K; j++) { // 가방 무게
+                if (j - W[i] >= 0) DP[i][j] = Math.max(DP[i - 1][j], DP[i - 1][j - W[i]] + V[i]);
+                else DP[i][j] = DP[i - 1][j];
             }
-            else if(K == tot_w){
-                tot_v += items.get(key);
-
-                if(tot_v > v_mx){
-                    v_mx = tot_v;
-                }
-            }
-            else{
-
-            }
-            
-            if(items.get(key) > value_mx){
-                value_mx = items.get(key);
-            }
-
         }
-        System.out.println();
-
+        System.out.println(DP[N][K]);
     }
 }
