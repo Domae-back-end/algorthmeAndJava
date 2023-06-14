@@ -9,11 +9,10 @@ public class Main {
 
     private String tot = "";
     private int cnt = 1;
-    private int randomLength = 3;
+    private int randomLength = 4;
 
     public static void main(String[] args) throws Exception {
-        Main main = new Main();
-        main.gameStart();
+        new Main().gameStart();
     }
 
     public void gameStart() {
@@ -35,7 +34,7 @@ public class Main {
                 exceptionError.setMsg("답 입력시에 잘못된 타입으로 입력하심.");
                 throw exceptionError;
             }
-            if(input.length() != randomLength){
+            if (input.length() != randomLength) {
                 exceptionError.setMsg("답 입력시에 잘못된 길이로 입력하심.");
                 throw exceptionError;
             }
@@ -51,22 +50,20 @@ public class Main {
 
     public String calc(String input) {
         String msg = "";
-        int cnt = 0;
+        int cntS = 0;
+        int cntB = 0;
 
-        for (int i = 0; i < randomLength; i++) {
-            if (tot.contains(input.charAt(i) + "")) {
-                cnt++;
-            }
-        }
-        msg += cnt + "B";
-
-        cnt = 0;
         for (int i = 0; i < randomLength; i++) {
             if (input.charAt(i) == tot.charAt(i)) {
-                cnt++;
+                cntS++;
+            } else {
+                if (tot.contains(input.charAt(i) + "")) {
+                    cntB++;
+                }
             }
         }
-        msg += cnt + "S";
+        msg += cntB + "B";
+        msg += cntS + "S";
 
         return msg;
     }
