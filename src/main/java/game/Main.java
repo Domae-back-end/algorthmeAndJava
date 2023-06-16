@@ -9,7 +9,7 @@ public class Main {
 
     private String tot = "";
     private int cnt = 1;
-    private int randomLength = 4;
+    private int randomLength = 3;
 
     public static void main(String[] args) throws Exception {
         new Main().gameStart();
